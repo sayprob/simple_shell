@@ -14,7 +14,7 @@ void execute_input(char *input, char *argv, int count)
 	if (cust_strncmp(input, "exit", 4) == 0)
 	{
 		free(input);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	arg_str = tokenize_input(input);
 	if (!arg_str[0])
