@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * read_userinput - Read input command from
+ * read_userinput - to read the input command from 
  * standard input
- * @input: Buffer to store the input
+ * @input: buffer to store input
  */
 void read_userinput(char **input)
 {
@@ -25,15 +25,15 @@ void read_userinput(char **input)
 }
 
 /**
- * error_userinput - Handle input errors from user
+ * error_userinput - Handles input errors from the user.
  *
- * Function is called when getline fails to read
- * user input
- * Checks if error was due to end-of-file condition
+ * This function is called when getline fails to read
+ * user input.
+ * It checks if the error was due to an end-of-file condition
  * (like Ctrl-D)
- * if EOF, print a newline and exit successfully
- * Otherwise, print error message using perror
- * and exit with a fail
+ * If EOF, it prints a newline and exits successfully.
+ * Otherwise, it prints an error message using perror
+ * and exits with a fail
  */
 void error_userinput(void)
 {
@@ -49,20 +49,20 @@ void error_userinput(void)
 }
 
 /**
- * child_execution - Create a child process
- * and execute the given command
+ * child_execution - Creates a child process
+ * and executes the given command.
  *
- * @arg_str: NULL terminated array of arguments
- * for the command to be executed
+ * @arg_str: Null-terminated array of arguments
+ * for the command to be execu
  *
- * This function will first attempt to create
- * a child process using fork()
+ * This function first attempts to create
+ * a child process using fork().
  * If fork fails, an error message is printed
- * and the shell will exit with a fail
- * If fork is successful, and we are in child
+ * and the shell exits with a fail
+ * If the fork is successful and we are in the child
  * process, execve()
- * The parent process waits for the child to
- * complete exec using wait()
+ * In the parent process, it waits for the child to
+ * complet exec using wait()
  */
 void child_execution(char **arg_str)
 {

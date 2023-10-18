@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * main - Displays the prompt simple_shell$
+ * main - to display the prompt simple_shell$
  *
- * Return: Nothing
+ * Return: nothing.
  */
 int main(void)
 {
@@ -15,8 +15,8 @@ int main(void)
 		execute_input(input);
 		show_prompt();
 
-		free(input); /* Release buffer memory after execting command */
-			input = NULL; /* Reset for the subsequent iteration */
+		free(input); /*Release buffer memory after executing command*/
+			input = NULL; /*Reset for the subsequent iteration*/
 	}
 
 	return (0);

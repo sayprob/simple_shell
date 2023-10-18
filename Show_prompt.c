@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * show_prompt - Display shell prompt
+ * show_prompt - Display the shell prompt
  */
 void show_prompt(void)
 {
@@ -13,9 +13,9 @@ void show_prompt(void)
 }
 
 /**
- * _myprintf - Print ouputs to the screen
- * @content: Content to output
- * Return: Return len of the content
+ * _myprintf - to print ouputs to the screen
+ * @content: The content to output
+ * Return: It should return len of the content
  */
 int _myprintf(const char *content)
 {

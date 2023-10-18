@@ -1,11 +1,9 @@
 #include "shell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * cust_strlen - Compute length of string
- * @s: String
- * Return: Length of the string
+ * cust_strlen - Computes length of a string
+ * @s: The string
+ * Return: Length of string
  */
 int cust_strlen(const char *s)
 {
@@ -17,9 +15,9 @@ int cust_strlen(const char *s)
 }
 
 /**
- * cust_strdup - Duplicate string
- * @s: String for duplicate
- * Return: The duplicated string
+ * cust_strdup - Duplicates a string
+ * @s: String to duplicate
+ * Return: Duplicated string
  */
 char *cust_strdup(const char *s)
 {
@@ -32,10 +30,10 @@ char *cust_strdup(const char *s)
 }
 
 /**
- * cust_strcpy - Copy source to the destination string
- * @s1: The destination string
- * @s2: The source string
- * Return: Pointer to the destination string
+ * cust_strcpy - Copies source to destination string
+ * @s1: Destination string
+ * @s2: Source string
+ * Return: Pointer to destination string
  */
 char *cust_strcpy(char *s1, const char *s2)
 {
@@ -47,36 +45,34 @@ char *cust_strcpy(char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-	s1 = '\0';
-	return (original_s1);
-}
-
-	/* Null-terminate the destination srting */
-	*s1 = '\0';
+	s1 = '\0'; /*Null-terminate the destination string*/
+		     
+		     return (original_s1);
 }
 
 /**
- * cust_strcat - concatenate s2 to s1
- * @s1: The destination string
- * @s2: The source string
- * Return: Pointer to destination string
+ * cust_strcat - Concatenates s2 to s1
+ * @s1: Destination string
+ * @s2: Source string
+ * Return: Pointer to the destination string
  */
-void *cust_strcat(char *s1, const char *s2)
+char *cust_strcat(char *s1, const char *s2)
 {
-	/* Find end of s1 */
+	char *original_s1 = s1;
+
+	/*Find end of s1*/
 		while (*s1)
-		{
 			s1++;
 
-	/* Copy s2 to end of s1 */
+	/*Copy s2 to the end of s1*/
 		while (*s2)
 		{
 			*s1 = *s2;
-			*s1++;
-			*s2++;
+			s1++;
+			s2++;
 		}
 
-	/* End resulting string with a null character */
+	/*End the resulting string with a null character*/
 		*s1 = '\0';
 
 	return (original_s1);

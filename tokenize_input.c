@@ -1,45 +1,42 @@
 #include "shell.h"
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX_ARGS 100
 
 /**
- * find_cmdpath - Search a command in dir
- * specified by PATH environ
- * @PATH_original: Command to search for
- * Return: Full path of command if found, or
- * NULL if not found
+ * find_cmdpath - Search  for a command in dir
+ * specified by the PATH environ
+ * @cmd: The command to search for
+ * Return: The full path of the command if found, or
+ * NULL if not found.
  */
-char *find_cmdpath(const *PATH_original)
+char *find_cmdpath(const char *cmd)
 {
-	char *PATH = cust_strdup(PATH_original);
-	/* Take a copy */
-		char *token = strtok(PATH, ":");
-	char *PATH_ORIGINAL = NULL;
-
+	char *PATH_original = cust_getenv("PATH");
+	char PATH = cust_strdup(PATH_original);
+	/*Take a copy/
+	char *token = strtok(PATH, ":");
+	char *cmd_path = NULL;
+						  
 	while (token)
 	{
-		cmd_path = build_cmdpath(cmd, token);
-		if (access(cmd_path, F_OK) == 0)
-		{
-			free(PATH); /* Free the copy */
-				return (cmd_path);
-		}
-		free(cmd_path);
-		cmd_path = NULL;
-		token = strtok(NULL, ":");
+	cmd_path = build_cmdpath(cmd, token);
+	if (access(cmd_path, F_OK) == 0)
+	{
+	free(PATH); /Free the copy/
+	return (cmd_path);
 	}
-	free(PATH); /* Free the copy */
-		return (NULL);
+	free(cmd_path);
+	cmd_path = NULL;
+	token = strtok(NULL, ":");
+	}
+	free(PATH); /Free the copy/
+	return (NULL);
 }
 
 /**
- * build_cmdpath - Construct command path by combining
- * dir and command
- * @cmd: Command to combine
- * @token: Token to be tokenized
- * Return: Constructed path
+ * build_cmdpath - Constructs a command path by combini
+ * the dir and comm
+ * @cmd: The command to combine.
+ * @token: The token to be tokenized
+ * Return: The constructed path.
  */
 char *build_cmdpath(const char *cmd, char *token)
 {
@@ -53,9 +50,9 @@ char *build_cmdpath(const char *cmd, char *token)
 }
 
 /**
- * tokenize_input - Split input string into array of argumens
- * @input: Command to tokenize
- * Return: Array of tokens/arguments
+ * tokenize_input - Split the input string into an array of arguments
+ * @input: The command to tokenize
+ * Return: An array of tokens/arguments
  */
 char **tokenize_input(const char *input)
 {
@@ -71,15 +68,14 @@ char **tokenize_input(const char *input)
 	}
 	arg_str[i] = NULL;
 
-	free(temp_input);
-	/* Free the temporary duplicated string */
+	free(temp_input); /Free the temporary duplicated string/
 		return (arg_str);
 }
 
 /**
- * cust_getenv - Retrieve value of environment variable
- * @nam: Name of the environment variable
- * Return: Value of environment variable or NULL
+ * cust_getenv - Retrieve value of an environment variable
+ * @nam: The name of the environment variable
+ * Return: The value of the environment variable or NULL
  * if not found
  */
 char *cust_getenv(const char *nam)
@@ -91,8 +87,8 @@ char *cust_getenv(const char *nam)
 	while (environ[i])
 	{
 		curr_var = environ[i];
-		if (cust_strncmp(curr_var, nam, nam_len)
-				== 0 &&
+		if (cust_strncmp(curr_var,
+				nam, nam_len) == 0 && 
 				curr_var[nam_len] == '=')
 		{
 			return (&curr_var[nam_len + 1]);

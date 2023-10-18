@@ -31,6 +31,4 @@ char *cust_strcat(char *s1, const char *s2);
 
 int cust_strncmp(const char *s1, const char *s2, size_t n);
 
-int cust_strncmp(const char *s1, const char *s2, size_t n);
-
 #endif
