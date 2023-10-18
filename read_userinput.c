@@ -39,7 +39,8 @@ void error_userinput(void)
 {
 	if (feof(stdin))
 	{
-		write(1, "\n ", 2);
+		if (isatty(STDIN_FILENO))
+			write(1, "\n ", 2);
 		exit(EXIT_SUCCESS);
 	}
 	else

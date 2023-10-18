@@ -7,13 +7,15 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <stdarg.h>
 
 #define MAX_ARGS 150
 
 void show_prompt(void);
-int _myprintf(const char *content);
+void _printf(const char *format, ...);
+void _putchar(char c);
 void read_userinput(char **input);
-void execute_input(const char *input);
+void execute_input(const char *input, char *argv, int count);
 char **tokenize_input(const char *input);
 void error_userinput(void);
 char *find_cmdpath(const char *cmd);

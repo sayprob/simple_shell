@@ -3,8 +3,10 @@
 /**
  * execute_input - Attempts to execute a given command
  * @input: The command to execute
+ * @argv: filename
+ * @count: loop count
  */
-void execute_input(const char *input)
+void execute_input(const char *input, char *argv, int count)
 {
 	int i;
 	char **arg_str, *path_cmd;
@@ -34,8 +36,9 @@ void execute_input(const char *input)
 		}
 		else
 		{
-			_myprintf(arg_str[0]);
-			_myprintf(": command not found\n");
+			_printf("%s: %d: %s: not found\n", argv, count, arg_str[0]);
+			if (!isatty(STDIN_FILENO))
+				exit(127);
 		}
 	}
 	for (i = 0; arg_str && arg_str[i] != NULL; i++)
@@ -53,5 +56,4 @@ void exit_execute(const char *input)
 {
 	if (cust_strlen(input) == 4)
 		exit(EXIT_SUCCESS);
-	_myprintf("exit: Usage: exit\n");
 }

@@ -7,21 +7,62 @@ void show_prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		_myprintf("simple_shell$ ");
+		_printf("simple_shell$ ");
 		fflush(stdout);
 	}
 }
 
 /**
- * _myprintf - to print ouputs to the screen
- * @content: The content to output
- * Return: It should return len of the content
+ * _putchar - custom printf
+ * @c: char to print
  */
-int _myprintf(const char *content)
+void _putchar(char c)
 {
-	int len = cust_strlen(content);
+	write(STDOUT_FILENO, &c, 1);
+}
 
-	write(STDOUT_FILENO, content, len);
+/**
+ * _printf - custom printf
+ * @format: format specifier
+ */
+void _printf(const char *format, ...)
+{ va_list args;
+	int divisor;
 
-	return (len);
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format != '%')
+		{ _putchar(*format);
+		}
+		else
+		{ format++;
+			if (*format == 'd')
+			{ int num = va_arg(args, int);
+
+				if (num < 0)
+				{ _putchar('-');
+					num = -num;
+				}
+				divisor = 1;
+				while (num / divisor >= 10)
+				{
+					divisor *= 10; }
+				while (divisor > 0)
+				{ int digit = num / divisor;
+
+					_putchar('0' + digit);
+					num %= divisor;
+					divisor /= 10; } }
+			else if (*format == 's')
+			{ const char *str = va_arg(args, const char *);
+
+				while (*str)
+				{ _putchar(*str);
+					str++; }
+			} else
+			{ _putchar('%');
+				_putchar(*format); }
+		} format++;
+	} va_end(args);
 }
