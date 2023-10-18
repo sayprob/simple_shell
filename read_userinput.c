@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * read_userinput - to read the input command from 
+ * read_userinput - to read the input command from
  * standard input
  * @input: buffer to store input
  */
@@ -39,6 +39,7 @@ void error_userinput(void)
 {
 	if (feof(stdin))
 	{
+		write(1, "\n ", 2);
 		exit(EXIT_SUCCESS);
 	}
 	else

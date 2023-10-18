@@ -11,12 +11,12 @@ int main(void)
 
 	while (1)
 	{
+		show_prompt();
 		read_userinput(&input);
 		execute_input(input);
-		show_prompt();
 
-		free(input); /*Release buffer memory after executing command*/
-			input = NULL; /*Reset for the subsequent iteration*/
+		free(input);  /*Release buffer memory after executing command*/
+		input = NULL; /*Reset for the subsequent iteration*/
 	}
 
 	return (0);

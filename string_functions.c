@@ -9,8 +9,11 @@ int cust_strlen(const char *s)
 {
 	int length = 0;
 
-	while (*s++)
+	while (*s)
+	{
 		length++;
+		s++;
+	}
 	return (length);
 }
 
@@ -24,9 +27,20 @@ char *cust_strdup(const char *s)
 	char *dup = malloc(cust_strlen(s) + 1);
 
 	if (dup)
-		cust_strcpy(dup, s);
+	{
+		char *original_dup = dup;
 
-	return (dup);
+		while (*s)
+		{
+			*dup = *s;
+			dup++;
+			s++;
+		}
+		*dup = '\0';
+		return (original_dup);
+	}
+
+	return (NULL);
 }
 
 /**
@@ -45,9 +59,9 @@ char *cust_strcpy(char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-	s1 = '\0'; /*Null-terminate the destination string*/
-		     
-		     return (original_s1);
+	*s1 = '\0'; /* Null-terminate the destination string */
+
+	return (original_s1);
 }
 
 /**
@@ -60,20 +74,20 @@ char *cust_strcat(char *s1, const char *s2)
 {
 	char *original_s1 = s1;
 
-	/*Find end of s1*/
-		while (*s1)
-			s1++;
+	/* Find end of s1 */
+	while (*s1)
+		s1++;
 
-	/*Copy s2 to the end of s1*/
-		while (*s2)
-		{
-			*s1 = *s2;
-			s1++;
-			s2++;
-		}
+	/* Copy s2 to the end of s1 */
+	while (*s2)
+	{
+		*s1 = *s2;
+		s1++;
+		s2++;
+	}
 
-	/*End the resulting string with a null character*/
-		*s1 = '\0';
+	/* End the resulting string with a null character */
+	*s1 = '\0';
 
 	return (original_s1);
 }

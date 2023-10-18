@@ -10,24 +10,24 @@
 char *find_cmdpath(const char *cmd)
 {
 	char *PATH_original = cust_getenv("PATH");
-	char PATH = cust_strdup(PATH_original);
-	/*Take a copy/
+	char *PATH = cust_strdup(PATH_original);
+	/* Take a copy */
 	char *token = strtok(PATH, ":");
 	char *cmd_path = NULL;
-						  
+
 	while (token)
 	{
-	cmd_path = build_cmdpath(cmd, token);
-	if (access(cmd_path, F_OK) == 0)
-	{
-	free(PATH); /Free the copy/
-	return (cmd_path);
+		cmd_path = build_cmdpath(cmd, token);
+		if (access(cmd_path, F_OK) == 0)
+		{
+			free(PATH); /* Free the copy */
+			return (cmd_path);
+		}
+		free(cmd_path);
+		cmd_path = NULL;
+		token = strtok(NULL, ":");
 	}
-	free(cmd_path);
-	cmd_path = NULL;
-	token = strtok(NULL, ":");
-	}
-	free(PATH); /Free the copy/
+	free(PATH); /* Free the copy */
 	return (NULL);
 }
 
@@ -40,8 +40,7 @@ char *find_cmdpath(const char *cmd)
  */
 char *build_cmdpath(const char *cmd, char *token)
 {
-	char *cmd_path = malloc(cust_strlen(token)
-			+ cust_strlen(cmd) + 2);
+	char *cmd_path = malloc(cust_strlen(token) + cust_strlen(cmd) + 2);
 
 	cust_strcpy(cmd_path, token);
 	cust_strcat(cmd_path, "/");
@@ -56,7 +55,7 @@ char *build_cmdpath(const char *cmd, char *token)
  */
 char **tokenize_input(const char *input)
 {
-	char *arg_str = malloc(MAX_ARGS sizeof(char *));
+	char **arg_str = malloc(MAX_ARGS + sizeof(char *));
 	int i = 0;
 	char *temp_input = cust_strdup(input);
 	char *token = strtok(temp_input, " ");
@@ -68,8 +67,8 @@ char **tokenize_input(const char *input)
 	}
 	arg_str[i] = NULL;
 
-	free(temp_input); /Free the temporary duplicated string/
-		return (arg_str);
+	free(temp_input); /* Free the temporary duplicated string */
+	return (arg_str);
 }
 
 /**
@@ -88,8 +87,8 @@ char *cust_getenv(const char *nam)
 	{
 		curr_var = environ[i];
 		if (cust_strncmp(curr_var,
-				nam, nam_len) == 0 && 
-				curr_var[nam_len] == '=')
+						 nam, nam_len) == 0 &&
+			curr_var[nam_len] == '=')
 		{
 			return (&curr_var[nam_len + 1]);
 		}
